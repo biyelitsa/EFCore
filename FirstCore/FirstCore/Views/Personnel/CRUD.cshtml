@@ -1,0 +1,68 @@
+﻿@model FirstCore.Models.ViewModels.PersonnelModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h4>Personnel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="@Model.Heading">
+            <div class="form-group">
+                <label asp-for="Personnel.Name" class="control-label"></label>
+                <input asp-for="Personnel.Name" class="form-control" />
+                <span asp-validation-for="Personnel.Name" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <input asp-for="Personnel.City.CityId" class="form-control" />
+        </div>*@
+            @*<select class="form-control" name="Model.Personnel.CityId">
+            @foreach (var item in Model.CityList)
+            {
+                if (item.CityId == Model.Personnel.City.CityId)
+                {
+                    <option style="color:red" selected value="@item.CityId">@item.CityName</option>
+
+                }
+                else
+                {
+                    <option value="@item.CityId">@item.CityName</option>
+                }
+            }
+        </select>*@
+        <div class="form-group">
+            <select class="form-control" name="Personnel.CityId">
+                @foreach (var item in Model.CityList)
+                {
+
+                    if (item.CityId == Model.Personnel.CityId)
+                    {
+                        <option style="color:red" selected value="@item.CityId">@item.CityName</option>
+
+                    }
+                    else
+                    {
+                        <option value="@item.CityId">@item.CityName</option>
+                    }
+                }
+
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@Model.BtnVal" class="@Model.BtnClass" />
+        </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
